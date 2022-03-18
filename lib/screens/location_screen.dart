@@ -47,14 +47,6 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: const AssetImage('images/location_background.jpg'),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.8), BlendMode.dstATop),
-          ),
-        ),
         constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
@@ -75,13 +67,14 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   MaterialButton(
-                    onPressed: () async{
+                    onPressed: () async {
                       var typeName = await Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return const CityScreen();
                       }));
-                      if(typeName != null){
-                        var weatherData = await weather.getWeatherByCityName(typeName);
+                      if (typeName != null) {
+                        var weatherData =
+                            await weather.getWeatherByCityName(typeName);
                         updateUI(weatherData);
                       }
                     },
@@ -110,7 +103,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 15.0),
+                padding: const EdgeInsets.only(right: 15.0,bottom: 25.0,left: 5.0),
                 child: Text(
                   '$weatherMessage in $cityName',
                   textAlign: TextAlign.right,

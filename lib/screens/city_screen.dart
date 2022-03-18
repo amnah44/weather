@@ -16,12 +16,6 @@ class _CityScreenState extends State<CityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/city_background.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
         constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
@@ -34,27 +28,32 @@ class _CityScreenState extends State<CityScreen> {
                   },
                   child: const Icon(
                     Icons.arrow_back_ios,
-                    size: 50.0,
+                    size: 40.0,
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 25.0,
+              ),
               Container(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(10.0),
                 child: TextField(
-                  style: const TextStyle(
-                    color: Colors.black
-                  ),
+                  autofocus: true,
+                  style: const TextStyle(color: Colors.black),
                   decoration: kTextFieldInputDecoration,
-                  onChanged: (value){
+                  onChanged: (value) {
                     cityName = value;
                   },
                 ),
               ),
+              const SizedBox(
+                height: 25.0,
+              ),
               MaterialButton(
                 onPressed: () {
-                 setState(() {
-                   Navigator.pop(context, cityName);
-                 });
+                  setState(() {
+                    Navigator.pop(context, cityName);
+                  });
                 },
                 child: const Text(
                   'Get Weather',
