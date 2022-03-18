@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weatherflutter/utilities/constants.dart';
 
@@ -9,6 +10,8 @@ class CityScreen extends StatefulWidget {
 }
 
 class _CityScreenState extends State<CityScreen> {
+  String? cityName;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +28,10 @@ class _CityScreenState extends State<CityScreen> {
             children: <Widget>[
               Align(
                 alignment: Alignment.topLeft,
-                child: FlatButton(
-                  onPressed: () {},
+                child: MaterialButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: const Icon(
                     Icons.arrow_back_ios,
                     size: 50.0,
@@ -35,10 +40,22 @@ class _CityScreenState extends State<CityScreen> {
               ),
               Container(
                 padding: const EdgeInsets.all(20.0),
-                child: null,
+                child: TextField(
+                  style: const TextStyle(
+                    color: Colors.black
+                  ),
+                  decoration: kTextFieldInputDecoration,
+                  onChanged: (value){
+                    cityName = value;
+                  },
+                ),
               ),
-              FlatButton(
-                onPressed: () {},
+              MaterialButton(
+                onPressed: () {
+                 setState(() {
+                   Navigator.pop(context, cityName);
+                 });
+                },
                 child: const Text(
                   'Get Weather',
                   style: kButtonTextStyle,
