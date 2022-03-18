@@ -12,7 +12,7 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  WeatherModel weather = WeatherModel();
+  WeatherModel weatherModel = WeatherModel();
   int? temperature;
   String? weatherIcon;
   String? cityName;
@@ -29,8 +29,8 @@ class _LocationScreenState extends State<LocationScreen> {
       double temp = weatherData['main']['temp'];
       temperature = temp.toInt();
       var condition = weatherData['weather'][0]['id'];
-      weatherIcon = weather.getWeatherIcon(condition);
-      weatherMessage = weather.getMessage(temperature!);
+      weatherIcon = weatherModel.getWeatherIcon(condition);
+      weatherMessage = weatherModel.getMessage(temperature!);
       cityName = weatherData['name'];
     });
   }
@@ -58,7 +58,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 children: <Widget>[
                   MaterialButton(
                     onPressed: () async{
-                      var weatherData = await weather.getLocationWeather();
+                      var weatherData = await weatherModel.getLocationWeather();
                       updateUI(weatherData);
                     },
                     child: const Icon(
