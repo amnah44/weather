@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class NetworkingHelper{
-  final uri;
   NetworkingHelper(this.uri);
+  final uri;
 
   Future getData() async {
     http.Response response = await http.get(uri);

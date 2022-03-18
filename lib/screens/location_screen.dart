@@ -3,7 +3,7 @@ import 'package:weatherflutter/utilities/constants.dart';
 import 'package:weatherflutter/services/weather.dart';
 
 class LocationScreen extends StatefulWidget {
-  LocationScreen(weatherData, {this.locationWeather});
+  LocationScreen({this.locationWeather});
 
   final locationWeather;
 
@@ -13,32 +13,24 @@ class LocationScreen extends StatefulWidget {
 
 class _LocationScreenState extends State<LocationScreen> {
   WeatherModel weather = WeatherModel();
-  late int temperature;
-  late String weatherIcon;
-  late String cityName;
-  late String weatherMessage;
+  int? temperature;
+  String? weatherIcon;
+  String? cityName;
+  String? weatherMessage;
 
   @override
   void initState() {
     super.initState();
-
     updateUI(widget.locationWeather);
   }
 
-  void updateUI(dynamic weatherData) {
+  void updateUI(dynamic weatherData){
     setState(() {
-      if (weatherData == null) {
-        temperature = 0;
-        weatherIcon = 'Error';
-        weatherMessage = 'Unable to get weather data';
-        cityName = '';
-        return;
-      }
       double temp = weatherData['main']['temp'];
       temperature = temp.toInt();
       var condition = weatherData['weather'][0]['id'];
       weatherIcon = weather.getWeatherIcon(condition);
-      weatherMessage = weather.getMessage(temperature);
+      weatherMessage = weather.getMessage(temperature!);
       cityName = weatherData['name'];
     });
   }
@@ -65,8 +57,9 @@ class _LocationScreenState extends State<LocationScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   MaterialButton(
-                    onPressed: () async {
-
+                    onPressed: () async{
+                      var weatherData = await weather.getLocationWeather();
+                      updateUI(weatherData);
                     },
                     child: const Icon(
                       Icons.near_me,
@@ -92,7 +85,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       style: kTempTextStyle,
                     ),
                     Text(
-                      weatherIcon,
+                      weatherIcon!,
                       style: kConditionTextStyle,
                     ),
                   ],
