@@ -6,8 +6,8 @@ const BASIC_URI = 'https://api.openweathermap.org/data/2.5/weather';
 
 class WeatherModel {
   Future<dynamic> getWeatherByCityName(String cityName) async {
-    NetworkingHelper networkingHelper =
-        NetworkingHelper(Uri.parse('$BASIC_URI?q=$cityName&appid=$API_KEY&units=metric'));
+    NetworkingHelper networkingHelper = NetworkingHelper(
+        Uri.parse('$BASIC_URI?q=$cityName&appid=$API_KEY&units=metric'));
     var weatherData = await networkingHelper.getData();
 
     return weatherData;
