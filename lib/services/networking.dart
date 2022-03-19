@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
+import 'package:dio/dio.dart';
+
 
 class NetworkingHelper{
   NetworkingHelper(this.uri);
   final uri;
 
   Future getData() async {
-    http.Response response = await http.get(uri);
+    final response = await Dio().get('$uri');
     if (response.statusCode == 200) {
-      String data = response.body;
-      return  jsonDecode(data);
+      Map<String, dynamic> data = jsonDecode(response.toString());
+      return  data;
     } else {
       print(response.statusCode);
     }
