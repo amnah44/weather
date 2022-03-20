@@ -10,12 +10,11 @@ const kDecorationImage = DecorationImage(
 );
 
 const kMessageTextStyle = TextStyle(
-  fontFamily: 'Spartan MB',
-  fontSize: 25.0,
+  fontSize: 20.0,
 );
 
 const kButtonTextStyle = TextStyle(
-  fontSize: 30.0,
+  fontSize: 25.0,
   color: Colors.lightBlueAccent,
   fontFamily: 'Spartan MB',
 );
@@ -23,16 +22,16 @@ const kButtonTextStyle = TextStyle(
 const kConditionTextStyle = TextStyle(
   fontSize: 100.0,
 );
+const kSizeBoxHeight = SizedBox(
+  height: 30.0,
+);
 const kTextFieldInputDecoration = InputDecoration(
   filled: true,
   fillColor: Colors.white,
-  icon: Icon(
-    Icons.location_city,
-    color: Colors.lightBlueAccent,
-  ),
-  hintText: 'Enter City Name',
+  hintText: '🔎 : London',
+  contentPadding: EdgeInsets.all(20.0),
   hintStyle: TextStyle(color: Colors.blueGrey),
   border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-      borderSide: BorderSide.none),
+      ),
 );

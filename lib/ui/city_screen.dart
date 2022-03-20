@@ -16,7 +16,8 @@ class _CityScreenState extends State<CityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        constraints: const BoxConstraints.expand(),
+        padding: const EdgeInsets.only(top: 10.0),
+        color: Colors.white,
         child: SafeArea(
           child: Column(
             children: <Widget>[
@@ -28,15 +29,14 @@ class _CityScreenState extends State<CityScreen> {
                   },
                   child: const Icon(
                     Icons.arrow_back_ios,
+                    color: Colors.lightBlueAccent,
                     size: 40.0,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 25.0,
-              ),
+              kSizeBoxHeight,
               Container(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.only(left: 30.0,right: 30.0),
                 child: TextField(
                   autofocus: true,
                   style: const TextStyle(color: Colors.black),

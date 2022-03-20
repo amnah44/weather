@@ -51,7 +51,6 @@ class _LocationScreenState extends State<LocationScreen> {
         constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Row(
@@ -86,29 +85,32 @@ class _LocationScreenState extends State<LocationScreen> {
                   ),
                 ],
               ),
+              kSizeBoxHeight,
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Expanded(
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        '$temperature°',
-                        style: kTempTextStyle,
-                      ),
-                      Text(
-                        weatherIcon!,
-                        style: kConditionTextStyle,
-                      ),
-                    ],
+                  child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          weatherIcon!,
+                          style: kConditionTextStyle,
+                        ),
+                        Text(
+                          '$temperature°',
+                          style: kTempTextStyle,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.only(right: 15.0, bottom: 25.0, left: 5.0),
+                    const EdgeInsets.only(right: 10.0, left: 10.0),
                 child: Text(
                   '$weatherMessage in $cityName',
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.left,
                   style: kMessageTextStyle,
                 ),
               ),
