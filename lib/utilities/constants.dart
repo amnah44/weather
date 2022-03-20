@@ -4,6 +4,10 @@ const kTempTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
   fontSize: 80.0,
 );
+const kDecorationImage = DecorationImage(
+    image: ExactAssetImage('images/sky.jpg'),
+    fit: BoxFit.fill
+);
 
 const kMessageTextStyle = TextStyle(
   fontFamily: 'Spartan MB',

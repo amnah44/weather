@@ -47,12 +47,7 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: ExactAssetImage('images/sky.jpg'),
-            fit: BoxFit.fill
-          ),
-        ),
+        decoration: const BoxDecoration(image: kDecorationImage),
         constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
