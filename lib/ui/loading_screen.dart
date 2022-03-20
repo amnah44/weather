@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weatherflutter/main.dart';
-import 'package:weatherflutter/screens/location_screen.dart';
+import 'package:weatherflutter/ui/location_screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:weatherflutter/services/api_weather.dart';
+import 'package:weatherflutter/network/api_weather.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key? key}) : super(key: key);

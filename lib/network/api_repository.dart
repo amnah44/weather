@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 
-class NetworkingHelper{
-  NetworkingHelper(this.uri);
+class WeatherRepository{
+  WeatherRepository(this.uri);
   final uri;
 
   Future getData() async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weatherflutter/screens/city_screen.dart';
-import 'package:weatherflutter/services/api_weather.dart';
+import 'package:weatherflutter/network/api_weather.dart';
+import 'package:weatherflutter/ui/city_screen.dart';
 import 'package:weatherflutter/utilities/constants.dart';
 
 class LocationScreen extends StatefulWidget {
@@ -47,6 +47,12 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: ExactAssetImage('images/sky.jpg'),
+            fit: BoxFit.fill
+          ),
+        ),
         constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
@@ -103,7 +109,8 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 15.0,bottom: 25.0,left: 5.0),
+                padding:
+                    const EdgeInsets.only(right: 15.0, bottom: 25.0, left: 5.0),
                 child: Text(
                   '$weatherMessage in $cityName',
                   textAlign: TextAlign.right,

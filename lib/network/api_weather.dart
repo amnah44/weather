@@ -1,12 +1,12 @@
-import 'package:weatherflutter/services/location.dart';
-import 'package:weatherflutter/services/networking.dart';
+import 'package:weatherflutter/network//location.dart';
+import 'package:weatherflutter/network//api_repository.dart';
 
 const API_KEY = '72563f9f739da2bb9f2c9a5da4013cc4';
 const BASIC_URI = 'https://api.openweathermap.org/data/2.5/weather';
 
 class WeatherModel {
   Future<dynamic> getWeatherByCityName(String cityName) async {
-    NetworkingHelper networkingHelper = NetworkingHelper(
+    WeatherRepository networkingHelper = WeatherRepository(
         Uri.parse('$BASIC_URI?q=$cityName&appid=$API_KEY&units=metric'));
     var weatherData = await networkingHelper.getData();
 
@@ -16,8 +16,8 @@ class WeatherModel {
   Future<dynamic> getLocationWeather() async {
     Location location = Location();
     await location.getCurrentLocation();
-    NetworkingHelper networkingHelper =
-        NetworkingHelper(Uri.parse('$BASIC_URI?lat=${location.latitude}&lon='
+    WeatherRepository networkingHelper =
+        WeatherRepository(Uri.parse('$BASIC_URI?lat=${location.latitude}&lon='
             '${location.longitude}&appid=$API_KEY&units=metric'));
 
     var weatherData = await networkingHelper.getData();
