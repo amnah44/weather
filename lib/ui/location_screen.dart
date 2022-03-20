@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weatherflutter/network/api_weather.dart';
+import 'package:weatherflutter/network/weather_model.dart';
 import 'package:weatherflutter/ui/city_screen.dart';
 import 'package:weatherflutter/utilities/constants.dart';
 
