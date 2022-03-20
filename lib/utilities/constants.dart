@@ -28,8 +28,12 @@ const kSizeBoxHeight = SizedBox(
 const kTextFieldInputDecoration = InputDecoration(
   filled: true,
   fillColor: Colors.white,
-  hintText: '🔎 : London',
-  contentPadding: EdgeInsets.all(20.0),
+  icon: Icon(
+    Icons.search,
+    color: Colors.lightBlueAccent,
+  ),
+  hintText: 'London',
+  contentPadding: EdgeInsets.all(15.0),
   hintStyle: TextStyle(color: Colors.blueGrey),
   border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(10.0)),

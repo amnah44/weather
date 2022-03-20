@@ -48,69 +48,65 @@ class _LocationScreenState extends State<LocationScreen> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(image: kDecorationImage),
-        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  MaterialButton(
-                    onPressed: () async {
-                      var weatherData = await weather.getLocationWeather();
-                      updateUI(weatherData);
-                    },
-                    child: const Icon(
-                      Icons.near_me,
-                      size: 50.0,
-                    ),
-                  ),
-                  MaterialButton(
-                    onPressed: () async {
-                      var typeName = await Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const CityScreen();
-                      }));
-                      if (typeName != null) {
-                        var weatherData =
-                            await weather.getWeatherByCityName(typeName);
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    MaterialButton(
+                      onPressed: () async {
+                        var weatherData = await weather.getLocationWeather();
                         updateUI(weatherData);
-                      }
-                    },
-                    child: const Icon(
-                      Icons.location_city,
-                      size: 50.0,
+                      },
+                      child: const Icon(
+                        Icons.refresh,
+                        size: 40.0,
+                      ),
                     ),
-                  ),
-                ],
+                    MaterialButton(
+                      onPressed: () async {
+                        var typeName = await Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const CityScreen();
+                        }));
+                        if (typeName != null) {
+                          var weatherData =
+                              await weather.getWeatherByCityName(typeName);
+                          updateUI(weatherData);
+                        }
+                      },
+                      child: const Icon(
+                        Icons.location_city,
+                        size: 40.0,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               kSizeBoxHeight,
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0),
-                child: Expanded(
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          weatherIcon!,
-                          style: kConditionTextStyle,
-                        ),
-                        Text(
-                          '$temperature°',
-                          style: kTempTextStyle,
-                        ),
-                      ],
+              Center(
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      weatherIcon!,
+                      style: kConditionTextStyle,
                     ),
-                  ),
+                    Text(
+                      '$temperature°',
+                      style: kTempTextStyle,
+                    ),
+                  ],
                 ),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.only(right: 10.0, left: 10.0),
+                    const EdgeInsets.only(right: 16.0, left: 16.0),
                 child: Text(
-                  '$weatherMessage in $cityName',
-                  textAlign: TextAlign.left,
+                  '$weatherMessage in \n$cityName',
+                  textAlign: TextAlign.center,
                   style: kMessageTextStyle,
                 ),
               ),
