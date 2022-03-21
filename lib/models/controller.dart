@@ -16,9 +16,11 @@ class LocationController extends GetxController {
     update();
     super.onInit();
   }
+
   void initState() {
     updateUI();
   }
+
   void updateUI() async {
     var weatherData = await WeatherModel().getLocationWeather();
     if (weatherData == null) {
