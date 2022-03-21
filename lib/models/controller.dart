@@ -16,21 +16,9 @@ class LocationController extends GetxController {
     update();
     super.onInit();
   }
-  @override
-  void onReady() {
-    initState();
-    update();
-    super.onReady();
-  }
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-  }
   void initState() {
     updateUI();
   }
-
   void updateUI() async {
     var weatherData = await WeatherModel().getLocationWeather();
     if (weatherData == null) {
@@ -41,7 +29,6 @@ class LocationController extends GetxController {
       isLoading = true;
     }
     getData(weatherData);
-    return;
   }
 
   void getData(weatherData) {
@@ -51,6 +38,7 @@ class LocationController extends GetxController {
     weatherIcon = weather.getWeatherIcon(condition);
     weatherMessage = weather.getMessage(temperature!);
     cityName = weatherData['name'];
+    update();
     return;
   }
 }
