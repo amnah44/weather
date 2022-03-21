@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:weatherflutter/models/binding.dart';
 import 'package:weatherflutter/ui/location_screen.dart';
 
 void main() => runApp(const MyApp());
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
+      initialBinding: LocationBinding(),
       home: const LocationScreen(),
     );
   }
