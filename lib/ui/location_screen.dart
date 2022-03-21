@@ -4,9 +4,6 @@ import 'package:weatherflutter/ui/city_screen.dart';
 import 'package:weatherflutter/utilities/constants.dart';
 
 class LocationScreen extends StatefulWidget {
-  LocationScreen({this.locationWeather});
-
-  final locationWeather;
 
   @override
   _LocationScreenState createState() => _LocationScreenState();
@@ -22,17 +19,15 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   void initState() {
     super.initState();
-    updateUI(widget.locationWeather);
+    updateUI();
   }
 
-  void updateUI(dynamic weatherData) {
+  void updateUI() async{
+    var weatherData = await WeatherModel().getLocationWeather();
+    getData(weatherData);
+  }
+  void getData(weatherData){
     setState(() {
-      if (weatherData == null) {
-        temperature = 0;
-        weatherIcon = 'Error';
-        weatherMessage = 'Unable to get  weather data';
-        cityName = '';
-      }
       double temp = weatherData['main']['temp'];
       temperature = temp.toInt();
       var condition = weatherData['weather'][0]['id'];
@@ -42,7 +37,6 @@ class _LocationScreenState extends State<LocationScreen> {
       return;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,8 +52,8 @@ class _LocationScreenState extends State<LocationScreen> {
                   children: <Widget>[
                     MaterialButton(
                       onPressed: () async {
-                        var weatherData = await weather.getLocationWeather();
-                        updateUI(weatherData);
+                        var weatherData = await WeatherModel().getLocationWeather();
+                        getData(weatherData);
                       },
                       child: const Icon(
                         Icons.refresh,
@@ -73,9 +67,8 @@ class _LocationScreenState extends State<LocationScreen> {
                           return const CityScreen();
                         }));
                         if (typeName != null) {
-                          var weatherData =
-                              await weather.getWeatherByCityName(typeName);
-                          updateUI(weatherData);
+                          var weatherData = await WeatherModel().getWeatherByCityName(typeName);
+                          getData(weatherData);
                         }
                       },
                       child: const Icon(

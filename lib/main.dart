@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weatherflutter/ui/loading_screen.dart';
 import 'package:get/get.dart';
+import 'package:weatherflutter/ui/location_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const LoadingScreen(),
+      home: LocationScreen(),
     );
   }
 }
