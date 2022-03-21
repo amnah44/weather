@@ -1,116 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:weatherflutter/models/controller.dart';
 import 'package:weatherflutter/network/weather_model.dart';
 import 'package:weatherflutter/ui/city_screen.dart';
 import 'package:weatherflutter/utilities/constants.dart';
 
-class LocationScreen extends StatefulWidget {
+class LocationScreen extends GetWidget<LocationController> {
   const LocationScreen({Key? key}) : super(key: key);
 
   @override
-  _LocationScreenState createState() => _LocationScreenState();
-}
-
-class _LocationScreenState extends State<LocationScreen> {
-  WeatherModel weather = WeatherModel();
-  int? temperature;
-  String? weatherIcon;
-  String? cityName;
-  String? weatherMessage;
-
-  @override
-  void initState() {
-    super.initState();
-    updateUI();
-  }
-
-  void updateUI() async{
-    var weatherData = await WeatherModel().getLocationWeather();
-    getData(weatherData);
-  }
-  void getData(weatherData){
-    setState(() {
-      if (weatherData == null) {
-        temperature = 0;
-        weatherIcon = 'Error';
-        weatherMessage = 'Unable to get  weather data';
-        cityName = '';
-      }
-      double temp = weatherData['main']['temp'];
-      temperature = temp.toInt();
-      var condition = weatherData['weather'][0]['id'];
-      weatherIcon = weather.getWeatherIcon(condition);
-      weatherMessage = weather.getMessage(temperature!);
-      cityName = weatherData['name'];
-      return;
-    });
-  }
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(image: kDecorationImage),
-        child: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    MaterialButton(
-                      onPressed: () async {
-                        var weatherData = await WeatherModel().getLocationWeather();
-                        getData(weatherData);
-                      },
-                      child: const Icon(
-                        Icons.refresh,
-                        size: 40.0,
+    return GetBuilder<LocationController>(
+      init: LocationController(),
+      builder: (controller) => Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(image: kDecorationImage),
+          child: SafeArea(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      MaterialButton(
+                        onPressed: () async {
+                          var weatherData =
+                              await WeatherModel().getLocationWeather();
+                          controller.getData(weatherData);
+                        },
+                        child: const Icon(
+                          Icons.refresh,
+                          size: 40.0,
+                        ),
                       ),
-                    ),
-                    MaterialButton(
-                      onPressed: () async {
-                        var typeName = await Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const CityScreen();
-                        }));
-                        if (typeName != null) {
-                          var weatherData = await WeatherModel().getWeatherByCityName(typeName);
-                          getData(weatherData);
-                        }
-                      },
-                      child: const Icon(
-                        Icons.location_city,
-                        size: 40.0,
+                      MaterialButton(
+                        onPressed: () async {
+                          var typeName = await Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const CityScreen();
+                          }));
+                          if (typeName != null) {
+                            var weatherData = await WeatherModel()
+                                .getWeatherByCityName(typeName);
+                            controller.getData(weatherData);
+                          }
+                        },
+                        child: const Icon(
+                          Icons.location_city,
+                          size: 40.0,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              kSizeBoxHeight,
-              Center(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      weatherIcon!,
-                      style: kConditionTextStyle,
-                    ),
-                    Text(
-                      '$temperature°',
-                      style: kTempTextStyle,
-                    ),
-                  ],
+                kSizeBoxHeight,
+                Center(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        '${controller.weatherIcon}',
+                        style: kConditionTextStyle,
+                      ),
+                      Text(
+                        '${controller.temperature}°',
+                        style: kTempTextStyle,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(right: 16.0, left: 16.0),
-                child: Text(
-                  '$weatherMessage in \n$cityName',
-                  textAlign: TextAlign.center,
-                  style: kMessageTextStyle,
+                Padding(
+                  padding: const EdgeInsets.only(right: 16.0, left: 16.0),
+                  child: Text(
+                    '${controller.weatherMessage} in \n${controller.cityName}',
+                    textAlign: TextAlign.center,
+                    style: kMessageTextStyle,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
