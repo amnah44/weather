@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../network/weather_model.dart';
+import '../../network/weather_model.dart';
 
 class LocationController extends GetxController {
   WeatherModel weather = WeatherModel();

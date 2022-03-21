@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weatherflutter/models/controller.dart';
+import 'package:weatherflutter/ui/location/controller.dart';
 import 'package:weatherflutter/network/weather_model.dart';
 import 'package:weatherflutter/ui/city_screen.dart';
 import 'package:weatherflutter/utilities/constants.dart';
