@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      color: Colors.white,
       initialBinding: LocationBinding(),
       home: const LocationScreen(),
     );

@@ -30,6 +30,7 @@ class LocationScreen extends GetWidget<LocationController> {
                       },
                       child: const Icon(
                         Icons.refresh,
+                        color: Colors.lightBlueAccent,
                         size: 40.0,
                       ),
                     ),
@@ -46,7 +47,8 @@ class LocationScreen extends GetWidget<LocationController> {
                         }
                       },
                       child: const Icon(
-                        Icons.location_city,
+                        Icons.search,
+                        color: Colors.lightBlueAccent,
                         size: 40.0,
                       ),
                     ),
