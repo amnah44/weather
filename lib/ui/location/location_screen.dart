@@ -71,7 +71,7 @@ class LocationScreen extends GetWidget<LocationController> {
                             style: kTempTextStyle,
                           )
                         : const SpinKitCircle(
-                            color: Colors.white,
+                            color: Colors.lightBlueAccent,
                             size: 70.0,
                           ),
                   ],
