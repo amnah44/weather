@@ -5,13 +5,13 @@ import 'package:weatherflutter/network/weather_model.dart';
 import 'package:weatherflutter/ui/search/search_screen.dart';
 import 'package:weatherflutter/utilities/constants.dart';
 
-class LocationScreen extends GetWidget<Controller> {
+class LocationScreen extends GetWidget<LocationController> {
   const LocationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetX<Controller>(
-      init: Controller(),
+    return GetX<LocationController>(
+      init: LocationController(),
       builder: (controller) => Scaffold(
         body: SafeArea(
           child: Column(

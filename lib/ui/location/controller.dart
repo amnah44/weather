@@ -3,7 +3,7 @@ import 'package:weatherflutter/data/location_data.dart';
 
 import '../../network/weather_model.dart';
 
-class Controller extends GetxController {
+class LocationController extends GetxController {
   WeatherModel weather = WeatherModel();
   final locationData = LocationData().obs;
 
