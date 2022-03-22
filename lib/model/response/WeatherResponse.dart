@@ -1,17 +1,24 @@
+import 'Clouds.dart';
+import 'Coord.dart';
+import 'Main.dart';
+import 'Sys.dart';
+import 'Weather.dart';
+import 'Wind.dart';
+
 class WeatherResponse {
-    String base;
-    Clouds clouds;
-    int cod;
-    Coord coord;
-    int dt;
-    int id;
-    Main main;
-    String name;
-    Sys sys;
-    int timezone;
-    int visibility;
-    List<Weather> weather;
-    Wind wind;
+    String? base;
+    Clouds? clouds;
+    int? cod;
+    Coord? coord;
+    int? dt;
+    int? id;
+    Main? main;
+    String? name;
+    Sys? sys;
+    int? timezone;
+    int? visibility;
+    List<Weather>? weather;
+    Wind? wind;
 
     WeatherResponse({this.base, this.clouds, this.cod, this.coord, this.dt, this.id, this.main, this.name, this.sys, this.timezone, this.visibility, this.weather, this.wind});
 
@@ -42,23 +49,23 @@ class WeatherResponse {
         data['name'] = this.name;
         data['timezone'] = this.timezone;
         data['visibility'] = this.visibility;
-        if (this.clouds != null) {
-            data['clouds'] = this.clouds.toJson();
+        if (clouds != null) {
+            data['clouds'] = clouds?.toJson();
         }
-        if (this.coord != null) {
-            data['coord'] = this.coord.toJson();
+        if (coord != null) {
+            data['coord'] = coord?.toJson();
         }
-        if (this.main != null) {
-            data['main'] = this.main.toJson();
+        if (main != null) {
+            data['main'] = main?.toJson();
         }
-        if (this.sys != null) {
-            data['sys'] = this.sys.toJson();
+        if (sys != null) {
+            data['sys'] = sys?.toJson();
         }
-        if (this.weather != null) {
-            data['weather'] = this.weather.map((v) => v.toJson()).toList();
+        if (weather != null) {
+            data['weather'] = weather?.map((v) => v.toJson()).toList();
         }
-        if (this.wind != null) {
-            data['wind'] = this.wind.toJson();
+        if (wind != null) {
+            data['wind'] = wind?.toJson();
         }
         return data;
     }

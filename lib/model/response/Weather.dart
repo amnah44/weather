@@ -1,8 +1,8 @@
 class Weather {
-    String description;
-    String icon;
-    int id;
-    String main;
+    String? description;
+    String? icon;
+    int? id;
+    String? main;
 
     Weather({this.description, this.icon, this.id, this.main});
 
@@ -16,11 +16,11 @@ class Weather {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
-        data['description'] = this.description;
-        data['icon'] = this.icon;
-        data['id'] = this.id;
-        data['main'] = this.main;
+        final Map<String, dynamic> data = Map<String, dynamic>();
+        data['description'] = description;
+        data['icon'] = icon;
+        data['id'] = id;
+        data['main'] = main;
         return data;
     }
 }

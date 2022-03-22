@@ -1,5 +1,5 @@
 class Clouds {
-    int all;
+    int? all;
 
     Clouds({this.all});
 
@@ -10,8 +10,8 @@ class Clouds {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
-        data['all'] = this.all;
+        final Map<String, dynamic> data = <String, dynamic>{};
+        data['all'] = all;
         return data;
     }
 }

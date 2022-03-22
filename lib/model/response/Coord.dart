@@ -1,6 +1,6 @@
 class Coord {
-    int lat;
-    int lon;
+    int? lat;
+    int? lon;
 
     Coord({this.lat, this.lon});
 
@@ -12,9 +12,9 @@ class Coord {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
-        data['lat'] = this.lat;
-        data['lon'] = this.lon;
+        final Map<String, dynamic> data = <String, dynamic>{};
+        data['lat'] = lat;
+        data['lon'] = lon;
         return data;
     }
 }

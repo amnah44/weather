@@ -1,12 +1,12 @@
 class Main {
-    double feels_like;
-    int grnd_level;
-    int humidity;
-    int pressure;
-    int sea_level;
-    double temp;
-    double temp_max;
-    double temp_min;
+    double? feels_like;
+    int? grnd_level;
+    int? humidity;
+    int? pressure;
+    int? sea_level;
+    double? temp;
+    double? temp_max;
+    double? temp_min;
 
     Main({this.feels_like, this.grnd_level, this.humidity, this.pressure, this.sea_level, this.temp, this.temp_max, this.temp_min});
 
@@ -24,15 +24,15 @@ class Main {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
-        data['feels_like'] = this.feels_like;
-        data['grnd_level'] = this.grnd_level;
-        data['humidity'] = this.humidity;
-        data['pressure'] = this.pressure;
-        data['sea_level'] = this.sea_level;
-        data['temp'] = this.temp;
-        data['temp_max'] = this.temp_max;
-        data['temp_min'] = this.temp_min;
+        final Map<String, dynamic> data = <String, dynamic>{};
+        data['feels_like'] = feels_like;
+        data['grnd_level'] = grnd_level;
+        data['humidity'] = humidity;
+        data['pressure'] = pressure;
+        data['sea_level'] = sea_level;
+        data['temp'] = temp;
+        data['temp_max'] = temp_max;
+        data['temp_min'] = temp_min;
         return data;
     }
 }
