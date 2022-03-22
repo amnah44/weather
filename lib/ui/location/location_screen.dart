@@ -10,7 +10,7 @@ class LocationScreen extends GetWidget<LocationController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LocationController>(
+    return GetX<LocationController>(
       init: LocationController(),
       builder: (controller) => Scaffold(
         body: SafeArea(
@@ -57,11 +57,11 @@ class LocationScreen extends GetWidget<LocationController> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      '${controller.weatherIcon}',
+                      controller.locationData.value.weatherIcon,
                       style: kConditionTextStyle,
                     ),
                     Text(
-                      '${controller.temperature}°',
+                      '${controller.locationData.value.temperature}°',
                       style: kTempTextStyle,
                     ),
                   ],
@@ -70,7 +70,8 @@ class LocationScreen extends GetWidget<LocationController> {
               Padding(
                 padding: const EdgeInsets.only(right: 16.0, left: 16.0),
                 child: Text(
-                  '${controller.weatherMessage} in \n${controller.cityName}',
+                  '${controller.locationData.value.weatherMessage}'
+                      ' in \n${controller.locationData.value.cityName}',
                   textAlign: TextAlign.center,
                   style: kMessageTextStyle,
                 ),

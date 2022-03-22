@@ -1,14 +1,11 @@
 import 'package:get/get.dart';
+import 'package:weatherflutter/data/location_data.dart';
 
 import '../../network/weather_model.dart';
 
 class LocationController extends GetxController {
   WeatherModel weather = WeatherModel();
-  int? temperature;
-  String? weatherIcon;
-  String? cityName;
-  String? weatherMessage;
-  bool isLoading = false;
+  final locationData = LocationData().obs;
 
   @override
   void onInit() {
@@ -23,24 +20,18 @@ class LocationController extends GetxController {
 
   void updateUI() async {
     var weatherData = await WeatherModel().getLocationWeather();
-    if (weatherData == null) {
-      temperature = 0;
-      weatherIcon = 'Error';
-      weatherMessage = 'Unable to get  weather data';
-      cityName = '';
-      isLoading = true;
-    }
     getData(weatherData);
   }
 
   void getData(weatherData) {
     double temp = weatherData['main']['temp'];
-    temperature = temp.toInt();
     var condition = weatherData['weather'][0]['id'];
-    weatherIcon = weather.getWeatherIcon(condition);
-    weatherMessage = weather.getMessage(temperature!);
-    cityName = weatherData['name'];
-    update();
-    return;
+
+    locationData.update((value) {
+      value?.temperature = temp.toInt();
+      value?.weatherIcon = weather.getWeatherIcon(condition);
+      value?.weatherMessage = weather.getMessage(value.temperature);
+      value?.cityName = weatherData['name'];
+    });
   }
 }
