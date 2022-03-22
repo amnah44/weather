@@ -3,19 +3,14 @@ import 'package:weatherflutter/data/location_data.dart';
 
 import '../../network/weather_model.dart';
 
-class LocationController extends GetxController {
+class Controller extends GetxController {
   WeatherModel weather = WeatherModel();
   final locationData = LocationData().obs;
 
   @override
   void onInit() {
-    initState();
-    update();
-    super.onInit();
-  }
-
-  void initState() {
     updateUI();
+    super.onInit();
   }
 
   void updateUI() async {
