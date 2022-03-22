@@ -24,7 +24,7 @@ class LocationController extends GetxController {
     locationData.update((value) {
       value?.temperature = temp.toInt();
       value?.weatherIcon = weather.getWeatherIcon(condition);
-      value?.weatherMessage = weather.getMessage(value.temperature);
+      value?.weatherMessage = weather.getMessage(value.temperature!);
       value?.cityName = weatherData['name'];
     });
   }

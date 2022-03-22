@@ -7,7 +7,7 @@ class SearchController extends GetxController {
 
   void getCityName() async {
     var weatherData =
-        await WeatherModel().getWeatherByCityName(locationData.value.cityName);
+        await WeatherModel().getWeatherByCityName('${locationData.value.cityName}');
 
     locationData.update((value) {
       value?.cityName = weatherData['name'];

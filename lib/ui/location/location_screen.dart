@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weatherflutter/ui/location/controller.dart';
 import 'package:weatherflutter/network/weather_model.dart';
+import 'package:weatherflutter/ui/location/controller.dart';
 import 'package:weatherflutter/ui/search/search_screen.dart';
 import 'package:weatherflutter/utilities/constants.dart';
 
@@ -57,21 +57,27 @@ class LocationScreen extends GetWidget<LocationController> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      controller.locationData.value.weatherIcon,
+                      controller.locationData.value.weatherIcon != null
+                          ? '${controller.locationData.value.weatherIcon}'
+                          : ' ',
                       style: kConditionTextStyle,
                     ),
-                    Text(
-                      '${controller.locationData.value.temperature}°',
-                      style: kTempTextStyle,
-                    ),
+                    controller.locationData.value.temperature != null
+                        ? Text(
+                            '${controller.locationData.value.temperature}°',
+                            style: kTempTextStyle,
+                          )
+                        : const CircularProgressIndicator(color: Colors.white),
                   ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 16.0, left: 16.0),
                 child: Text(
-                  '${controller.locationData.value.weatherMessage}'
-                      ' in \n${controller.locationData.value.cityName}',
+                  controller.locationData.value.weatherMessage != null
+                      ? '${controller.locationData.value.weatherMessage}'
+                          ' in \n${controller.locationData.value.cityName}'
+                      : ' ',
                   textAlign: TextAlign.center,
                   style: kMessageTextStyle,
                 ),
