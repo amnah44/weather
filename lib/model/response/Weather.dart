@@ -16,7 +16,7 @@ class Weather {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = Map<String, dynamic>();
+        final Map<String, dynamic> data = <String, dynamic>{};
         data['description'] = description;
         data['icon'] = icon;
         data['id'] = id;

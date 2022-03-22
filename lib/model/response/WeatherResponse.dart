@@ -41,14 +41,14 @@ class WeatherResponse {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
-        data['base'] = this.base;
-        data['cod'] = this.cod;
-        data['dt'] = this.dt;
-        data['id'] = this.id;
-        data['name'] = this.name;
-        data['timezone'] = this.timezone;
-        data['visibility'] = this.visibility;
+        final Map<String, dynamic> data = <String, dynamic>{};
+        data['base'] = base;
+        data['cod'] = cod;
+        data['dt'] = dt;
+        data['id'] = id;
+        data['name'] = name;
+        data['timezone'] = timezone;
+        data['visibility'] = visibility;
         if (clouds != null) {
             data['clouds'] = clouds?.toJson();
         }

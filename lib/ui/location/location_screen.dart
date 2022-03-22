@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:weatherflutter/network/weather_model.dart';
 import 'package:weatherflutter/ui/location/controller.dart';
@@ -67,7 +68,10 @@ class LocationScreen extends GetWidget<LocationController> {
                             '${controller.locationData.value.temperature}°',
                             style: kTempTextStyle,
                           )
-                        : const CircularProgressIndicator(color: Colors.white),
+                        : const SpinKitCircle(
+                            color: Colors.white,
+                            size: 70.0,
+                          ),
                   ],
                 ),
               ),
