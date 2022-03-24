@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:weatherflutter/network/weather_model.dart';
+import 'package:weatherflutter/network/weather_service.dart';
 import 'package:weatherflutter/ui/location/controller.dart';
 import 'package:weatherflutter/ui/search/search_screen.dart';
 import 'package:weatherflutter/utilities/constants.dart';
@@ -11,8 +11,7 @@ class LocationScreen extends GetWidget<LocationController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetX<LocationController>(
-      init: LocationController(),
+    return GetBuilder<LocationController>(
       builder: (controller) => Scaffold(
         body: SafeArea(
           child: Column(
@@ -23,10 +22,13 @@ class LocationScreen extends GetWidget<LocationController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     MaterialButton(
-                      onPressed: () async {
-                        var weatherData =
-                            await WeatherModel().getLocationWeather();
-                        controller.getData(weatherData);
+                      // onPressed: () async {
+                      //   var weatherData =
+                      //       await WeatherService().getLocationWeather();
+                      //   controller.getData(weatherData);
+                      // },
+                      onPressed: () {
+
                       },
                       child: const Icon(
                         Icons.refresh,
@@ -35,16 +37,19 @@ class LocationScreen extends GetWidget<LocationController> {
                       ),
                     ),
                     MaterialButton(
-                      onPressed: () async {
-                        var typeName = await Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const SearchScreen();
-                        }));
-                        if (typeName != null) {
-                          var weatherData = await WeatherModel()
-                              .getWeatherByCityName(typeName);
-                          controller.getData(weatherData);
-                        }
+                      // onPressed: () async {
+                      //   var typeName = await Navigator.push(context,
+                      //       MaterialPageRoute(builder: (context) {
+                      //     return const SearchScreen();
+                      //   }));
+                      //   if (typeName != null) {
+                      //     var weatherData = await WeatherService()
+                      //         .getWeatherByCityName(typeName);
+                      //     controller.getData(weatherData);
+                      //   }
+                      // },
+                      onPressed: () {
+
                       },
                       child: const Icon(
                         Icons.search,
@@ -59,15 +64,14 @@ class LocationScreen extends GetWidget<LocationController> {
               Center(
                 child: Column(
                   children: <Widget>[
+                    (controller.weatherIcon != null) ?
                     Text(
-                      controller.locationData.value.weatherIcon != null
-                          ? '${controller.locationData.value.weatherIcon}'
-                          : ' ',
+                      '${controller.weatherIcon}',
                       style: kConditionTextStyle,
-                    ),
-                    controller.locationData.value.temperature != null
+                    ): const Text(' '),
+                    controller.weatherResponse.main?.temp != null
                         ? Text(
-                            '${controller.locationData.value.temperature}°',
+                            '${controller.weatherResponse.main?.temp?.toInt()}°',
                             style: kTempTextStyle,
                           )
                         : const SpinKitCircle(
@@ -80,9 +84,9 @@ class LocationScreen extends GetWidget<LocationController> {
               Padding(
                 padding: const EdgeInsets.only(right: 16.0, left: 16.0),
                 child: Text(
-                  controller.locationData.value.weatherMessage != null
-                      ? '${controller.locationData.value.weatherMessage}'
-                          ' in \n${controller.locationData.value.cityName}'
+                  controller.weatherMessage != null
+                      ? '${controller.weatherMessage}'
+                          ' in \n${controller.weatherResponse.name}'
                       : ' ',
                   textAlign: TextAlign.center,
                   style: kMessageTextStyle,

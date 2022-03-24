@@ -1,31 +1,54 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import '../../model/data/location_data.dart';
-import '../../network/weather_model.dart';
+import 'package:weatherflutter/model/response/weather_response.dart';
+import 'package:weatherflutter/network/weather_repository.dart';
+import 'package:weatherflutter/network/weather_service.dart';
+
+import '../../network/dio_connectivity.dart';
+import '../../network/intercepter.dart';
 
 class LocationController extends GetxController {
-  WeatherModel weather = WeatherModel();
-  final locationData = LocationData().obs;
+  String? city;
+  String? weatherIcon;
+  String? weatherMessage;
+  bool isLoading = false;
+  WeatherResponse weatherResponse = WeatherResponse();
+  var weather = WeatherService(city: 'baghdad');
+  LocationController({required this.city});
+
+  // WeatherModel weather = WeatherModel();
+  // final locationData = LocationData().obs;
 
   @override
   void onInit() {
-    updateUI();
+    getCurrentWeatherData();
     super.onInit();
   }
 
-  void updateUI() async {
-    var weatherData = await WeatherModel().getLocationWeather();
-    getData(weatherData);
+  void getCurrentWeatherData() {
+    WeatherService(city: '$city').getCurrentWeather(
+        onLoading: () => loading(),
+        onSuccess: (data) {
+          isLoading = false;
+          _getData(data);
+          weatherResponse = data;
+          update();
+        },
+        onError: (error) {
+          print(error);
+          update();
+        });
+  }
+  void _getData(data){
+    int? condition = data.weather?[0].id;
+    int? temperture = data.main?.temp?.toInt();
+    weatherIcon = weather.getWeatherIcon(condition!);
+    weatherMessage = weather.getMessage(temperture!);
   }
 
-  void getData(weatherData) {
-    double temp = weatherData['main']['temp'];
-    var condition = weatherData['weather'][0]['id'];
-
-    locationData.update((value) {
-      value?.temperature = temp.toInt();
-      value?.weatherIcon = weather.getWeatherIcon(condition);
-      value?.weatherMessage = weather.getMessage(value.temperature!);
-      value?.cityName = weatherData['name'];
-    });
+  void loading() {
+    isLoading = true;
+    update();
   }
 }
