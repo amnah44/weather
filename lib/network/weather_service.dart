@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:weatherflutter/network//weather_repository.dart';
 import 'package:weatherflutter/network/location.dart';
 import '../model/response/weather_response.dart';
@@ -49,21 +50,21 @@ class WeatherService {
 
   String getWeatherIcon(int condition) {
     if (condition < 300) {
-      return '🌩';
+      return 'assets/thunder.jpg';
     } else if (condition < 400) {
-      return '🌧';
+      return 'assets/strong-rainy.jpg';
     } else if (condition < 600) {
-      return '☔️';
+      return 'assets/rainy.jpg';
     } else if (condition < 700) {
-      return '☃️';
+      return 'assets/snow.jpg';
     } else if (condition < 800) {
-      return '🌫';
+      return 'assets/cloudy.jpg';
     } else if (condition == 800) {
-      return '☀️';
+      return 'assets/sunny.jpg';
     } else if (condition <= 804) {
-      return '☁️';
+      return 'assets/fog.jpg';
     } else {
-      return '🤷‍';
+      return 'assets/weather.jpg';
     }
   }
 

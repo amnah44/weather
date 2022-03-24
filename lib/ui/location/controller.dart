@@ -1,12 +1,7 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:weatherflutter/model/response/weather_response.dart';
-import 'package:weatherflutter/network/weather_repository.dart';
 import 'package:weatherflutter/network/weather_service.dart';
 
-import '../../network/dio_connectivity.dart';
-import '../../network/intercepter.dart';
 
 class LocationController extends GetxController {
   String? city;
@@ -16,9 +11,6 @@ class LocationController extends GetxController {
   WeatherResponse weatherResponse = WeatherResponse();
   var weather = WeatherService(city: 'baghdad');
   LocationController({required this.city});
-
-  // WeatherModel weather = WeatherModel();
-  // final locationData = LocationData().obs;
 
   @override
   void onInit() {
