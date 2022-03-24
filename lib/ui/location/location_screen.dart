@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:weatherflutter/network/weather_service.dart';
 import 'package:weatherflutter/ui/location/controller.dart';
 import 'package:weatherflutter/utilities/constants.dart';
 
-class LocationScreen extends GetWidget<LocationController> {
+import '../search/search_screen.dart';
+
+class LocationScreen extends GetWidget<Controller> {
   const LocationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LocationController>(
+    return GetBuilder<Controller>(
       builder: (controller) => Scaffold(
         body: controller.weatherIcon != null
             ? SafeArea(
@@ -42,7 +45,15 @@ class LocationScreen extends GetWidget<LocationController> {
                             color: Colors.white,
                             size: 40.0,
                           ),
-                          onPressed: () {},
+                          onPressed: () async{
+                            var typeName = await Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                                  return const SearchScreen();
+                                }));
+                            if (typeName != null) {
+                              controller.getWeatherDataByCityName(typeName);
+                            }
+                          },
                         ),
                       ),
                       Align(

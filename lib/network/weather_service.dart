@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:weatherflutter/network//weather_repository.dart';
 import 'package:weatherflutter/network/location.dart';
+
 import '../model/response/weather_response.dart';
 
 class WeatherService {
@@ -10,43 +10,52 @@ class WeatherService {
 
   WeatherService({required this.city});
 
-  Future<dynamic> getCurrentWeather({
-    Function()? onLoading,
-    Function(WeatherResponse weatherResponse)? onSuccess,
-    Function(dynamic error)? onError}) async{
+  Future<dynamic> getCurrentWeather(
+      {Function()? onLoading,
+      Function(WeatherResponse weatherResponse)? onSuccess,
+      Function(dynamic error)? onError}) async {
     Location location = Location();
     await location.getCurrentLocation();
 
-    var uri =  '$baseUrl?lat=${location.latitude}&lon='
+    var uri = '$baseUrl?lat=${location.latitude}&lon='
         '${location.longitude}&appid=$apiKey&units=metric';
 
-    WeatherRepository networkingHelper =
-    WeatherRepository(uri:uri);
+    WeatherRepository networkingHelper = WeatherRepository(uri: uri);
     var weatherData = await networkingHelper.getData();
 
     WeatherRepository(uri: uri, payLoad: null).get(
       onLoading: () => {if (onLoading != null) onLoading()},
-      onSuccess: (data) => {if (onSuccess != null) onSuccess(WeatherResponse.fromJson(data))},
+      onSuccess: (data) =>
+          {if (onSuccess != null) onSuccess(WeatherResponse.fromJson(data))},
       onError: (error) => {if (onError != null) onError(error)},
     );
 
     return weatherData;
   }
 
-  void getFiveDaysWeatherData({
-  Function()? onLoading,
-  Function(dynamic fiveDayData)? onSuccess,
-  Function(dynamic error)? onError}){
-    // final uri = ''
-}
-  // Future<dynamic> getWeatherByCityName(String cityName) async {
-  //   WeatherRepository networkingHelper = WeatherRepository(
-  //       Uri.parse('$BASIC_URI?q=$cityName&appid=$API_KEY&units=metric'));
-  //   var weatherData = await networkingHelper.getData();
-  //
-  //   return weatherData;
-  // }
-  //
+//   void searchByCity({
+//   Function()? onLoading,
+//   Function(dynamic fiveDayData)? onSuccess,
+//   Function(dynamic error)? onError}){
+//     // final uri = ''
+
+  Future<dynamic> getWeatherByCityName(
+      {Function()? onLoading,
+      Function(dynamic fiveDayData)? onSuccess,
+      Function(dynamic error)? onError}) async {
+    var uri = '$baseUrl?q=$city&appid=$apiKey&units=metric';
+    WeatherRepository networkingHelper = WeatherRepository(
+        uri: uri);
+    var weatherData = await networkingHelper.getData();
+
+    WeatherRepository(uri: uri, payLoad: null).get(
+      onLoading: () => {if (onLoading != null) onLoading()},
+      onSuccess: (data) =>
+      {if (onSuccess != null) onSuccess(WeatherResponse.fromJson(data))},
+      onError: (error) => {if (onError != null) onError(error)},
+    );
+    return weatherData;
+  }
 
   String getWeatherIcon(int condition) {
     if (condition < 300) {
