@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 
-class Images {
-  Images._();
-  static const String cloudyAnim = 'assets/anim/cloudy.json';
-  static const String cloudyMain = 'assets/anim/cloudy_main.json';
-}
-
 const kTempTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
   fontSize: 80.0,

@@ -5,7 +5,6 @@ import 'package:weatherflutter/utilities/ConditionIcons.dart';
 
 import '../../model/response/five_days_data.dart';
 
-
 class Controller extends GetxController {
   String? city;
   String? weatherImage;
@@ -28,37 +27,34 @@ class Controller extends GetxController {
   }
 
   void getCurrentWeatherData() {
-    WeatherService(city: '$city').getCurrentWeather(
-        onSuccess: (data) {
-          getData(data);
-          weatherResponse = data;
-          update();
-        },
-        onError: (error) {
-          print(error);
-          update();
-        });
+    WeatherService(city: '$city').getCurrentWeather(onSuccess: (data) {
+      getData(data);
+      weatherResponse = data;
+      update();
+    }, onError: (error) {
+      print(error);
+      update();
+    });
     getFiveDaysData();
     update();
   }
+
   void getWeatherDataByCityName(typeName) {
-    WeatherService(city: '$city').getWeatherByCityName(
-        onSuccess: (data) {
-          getData(data);
-          weatherResponse = data;
-          update();
-        },
-        onError: (error) {
-          print(error);
-          update();
-        });
+    WeatherService(city: '$city').getWeatherByCityName(onSuccess: (data) {
+      getData(data);
+      weatherResponse = data;
+      update();
+    }, onError: (error) {
+      print(error);
+      update();
+    });
   }
-  void getData(data){
+
+  void getData(data) {
     int? condition = data.weather?[0].id;
-    int? temperture = data.main?.temp?.toInt();
+    int? temperature = data.main?.temp?.toInt();
     weatherImage = weather.getWeatherImage(condition!);
-    weatherIcons = weather.getWeatherIcon(condition);
-    weatherMessage = weather.getMessage(temperture!);
+    weatherMessage = weather.getMessage(temperature!);
   }
 
   void getSpecialCities() {
@@ -85,11 +81,10 @@ class Controller extends GetxController {
   }
 
   void getFiveDaysData() {
-    WeatherService(city: '$city').getWeatherOfSpacialCities(
-        onSuccess: (data) {
-          fiveDaysData = data;
-          update();
-        }, onError: (error) {
+    WeatherService(city: '$city').getWeatherOfSpacialCities(onSuccess: (data) {
+      fiveDaysData = data;
+      update();
+    }, onError: (error) {
       print(error);
       update();
     });
