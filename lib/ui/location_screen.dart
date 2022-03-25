@@ -1,13 +1,12 @@
-import 'dart:ffi';
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:intl/intl.dart';
-import 'package:weatherflutter/model/response/weather_response.dart';
-import 'package:weatherflutter/ui/controller.dart';
-import 'package:weatherflutter/utilities/constants.dart';
 
+import '../model/response/weather_response.dart';
+import '../utilities/constants.dart';
+import 'controller.dart';
 import 'search_screen.dart';
 
 class LocationScreen extends GetWidget<Controller> {
