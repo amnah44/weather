@@ -6,7 +6,7 @@ class WeatherRepository {
   final String uri;
   final Map<String, dynamic>? payLoad;
 
-  WeatherRepository({required this.uri, this.payLoad});
+  WeatherRepository({required this.uri, this.payLoad, payload});
 
   final Dio _dio = Dio();
 

@@ -1,6 +1,7 @@
 import 'package:weatherflutter/network//weather_repository.dart';
 import 'package:weatherflutter/network/location.dart';
 
+import '../model/response/five_days_data.dart';
 import '../model/response/weather_response.dart';
 
 class WeatherService {
@@ -33,12 +34,6 @@ class WeatherService {
     return weatherData;
   }
 
-//   void searchByCity({
-//   Function()? onLoading,
-//   Function(dynamic fiveDayData)? onSuccess,
-//   Function(dynamic error)? onError}){
-//     // final uri = ''
-
   Future<dynamic> getWeatherByCityName(
       {Function()? onLoading,
       Function(dynamic fiveDayData)? onSuccess,
@@ -55,6 +50,27 @@ class WeatherService {
       onError: (error) => {if (onError != null) onError(error)},
     );
     return weatherData;
+  }
+
+  void getWeatherOfSpacialCities({
+    Function()? onLoading,
+    Function(List<FiveDayData> fiveDayData)? onSuccess,
+    Function(dynamic error)? onError,
+  }) {
+    final url = 'https://api.openweathermap.org/data/2.5/forecast?q=$city&lang=en&$apiKey';
+
+    WeatherRepository( uri: url, payload: null).get(
+        onLoading: () => {},
+        onSuccess: (data) => {
+          onSuccess!((data['list'] as List)
+              ?.map((t) => FiveDayData.fromJson(t))
+              ?.toList() ??
+              List.empty()),
+        },
+        onError: (error) => {
+          print(error),
+          onError!(error),
+        });
   }
 
   String getWeatherIcon(int condition) {
@@ -88,4 +104,5 @@ class WeatherService {
       return 'Bring a 🧥 just in case';
     }
   }
+
 }
