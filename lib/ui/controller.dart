@@ -54,6 +54,7 @@ class Controller extends GetxController {
     int? condition = data.weather?[0].id;
     int? temperature = data.main?.temp?.toInt();
     weatherImage = weather.getWeatherImage(condition!);
+    weatherIcons = weather.getWeatherIcon(condition);
     weatherMessage = weather.getMessage(temperature!);
   }
 

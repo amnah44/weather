@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
@@ -315,18 +316,19 @@ class LocationScreen extends GetWidget<Controller> {
                                                         ),
                                                   ),
                                                   Text(
-                                                    (data != null)
-                                                        ? '${data.weather?[0].description}'
-                                                        : '',
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .caption
-                                                        ?.copyWith(
-                                                          color: Colors.black45,
-                                                          fontFamily:
-                                                              'flutterfonts',
-                                                          fontSize: 15,
-                                                        ),
+                                                    (data != null)?
+                                                        '${data.weather?[0].icon}':' '
+                                                    //     ? '${data.weather?[0].description}'
+                                                    //     : '',
+                                                    // style: Theme.of(context)
+                                                    //     .textTheme
+                                                    //     .caption
+                                                    //     ?.copyWith(
+                                                    //       color: Colors.black45,
+                                                    //       fontFamily:
+                                                    //           'flutterfonts',
+                                                    //       fontSize: 15,
+                                                    //     ),
                                                   ),
                                                 ],
                                               ),
