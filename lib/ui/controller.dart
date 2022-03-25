@@ -8,7 +8,6 @@ import '../../model/response/five_days_data.dart';
 class Controller extends GetxController {
   String? city;
   String? weatherImage;
-  String? weatherIcons;
   String? weatherMessage;
 
   WeatherResponse weatherResponse = WeatherResponse();
@@ -54,7 +53,6 @@ class Controller extends GetxController {
     int? condition = data.weather?[0].id;
     int? temperature = data.main?.temp?.toInt();
     weatherImage = weather.getWeatherImage(condition!);
-    weatherIcons = weather.getWeatherIcon(condition);
     weatherMessage = weather.getMessage(temperature!);
   }
 

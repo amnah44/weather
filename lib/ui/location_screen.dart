@@ -316,19 +316,18 @@ class LocationScreen extends GetWidget<Controller> {
                                                         ),
                                                   ),
                                                   Text(
-                                                    (data != null)?
-                                                        '${data.weather?[0].icon}':' '
-                                                    //     ? '${data.weather?[0].description}'
-                                                    //     : '',
-                                                    // style: Theme.of(context)
-                                                    //     .textTheme
-                                                    //     .caption
-                                                    //     ?.copyWith(
-                                                    //       color: Colors.black45,
-                                                    //       fontFamily:
-                                                    //           'flutterfonts',
-                                                    //       fontSize: 15,
-                                                    //     ),
+                                                    (data != null)
+                                                        ? '${data.weather?[0].description}'
+                                                        : '',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .caption
+                                                        ?.copyWith(
+                                                          color: Colors.black45,
+                                                          fontFamily:
+                                                              'flutterfonts',
+                                                          fontSize: 15,
+                                                        ),
                                                   ),
                                                 ],
                                               ),
