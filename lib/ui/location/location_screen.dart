@@ -1,10 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:weatherflutter/model/response/weather_response.dart';
-import 'package:weatherflutter/network/weather_service.dart';
 import 'package:weatherflutter/ui/location/controller.dart';
 import 'package:weatherflutter/utilities/constants.dart';
 
@@ -17,7 +18,7 @@ class LocationScreen extends GetWidget<Controller> {
   Widget build(BuildContext context) {
     return GetBuilder<Controller>(
       builder: (controller) => Scaffold(
-        body: controller.weatherIcon != null
+        body: controller.weatherImage != null
             ? SafeArea(
                 child: Column(
                   children: [
@@ -29,7 +30,7 @@ class LocationScreen extends GetWidget<Controller> {
                             colorFilter: const ColorFilter.mode(
                                 Colors.black26, BlendMode.darken),
                             image: AssetImage(
-                              '${controller.weatherIcon}',
+                              '${controller.weatherImage}',
                             ),
                             fit: BoxFit.cover,
                           ),
@@ -257,7 +258,7 @@ class LocationScreen extends GetWidget<Controller> {
                                     SizedBox(
                                       height: 150,
                                       child: ListView.separated(
-                                        physics: BouncingScrollPhysics(),
+                                        physics: const BouncingScrollPhysics(),
                                         scrollDirection: Axis.horizontal,
                                         separatorBuilder: (context, index) =>
                                             const VerticalDivider(
@@ -294,8 +295,7 @@ class LocationScreen extends GetWidget<Controller> {
                                                           fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          color:
-                                                              Colors.black45,
+                                                          color: Colors.black45,
                                                           fontFamily:
                                                               'flutterfonts',
                                                         ),
@@ -311,16 +311,16 @@ class LocationScreen extends GetWidget<Controller> {
                                                           fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          color:
-                                                              Colors.black45,
+                                                          color: Colors.black45,
                                                           fontFamily:
                                                               'flutterfonts',
                                                         ),
                                                   ),
-                                                  const SizedBox(
-                                                    width: 50,
-                                                    height: 50,
-                                                    child: Text('')
+                                                  Center(
+                                                    child: Text(
+                                                        '${controller.weatherIcons}',
+                                                        style:
+                                                            kConditionTextStyle),
                                                   ),
                                                   Text(
                                                     (data != null)
@@ -330,8 +330,7 @@ class LocationScreen extends GetWidget<Controller> {
                                                         .textTheme
                                                         .caption
                                                         ?.copyWith(
-                                                          color:
-                                                              Colors.black45,
+                                                          color: Colors.black45,
                                                           fontFamily:
                                                               'flutterfonts',
                                                           fontSize: 14,

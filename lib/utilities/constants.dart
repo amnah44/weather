@@ -10,10 +10,6 @@ const kTempTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
   fontSize: 80.0,
 );
-const kDecorationImage = DecorationImage(
-    image: ExactAssetImage('assets/sky.jpg'),
-    fit: BoxFit.fill
-);
 
 const kMessageTextStyle = TextStyle(
   fontSize: 20.0,
@@ -26,7 +22,7 @@ const kButtonTextStyle = TextStyle(
 );
 
 const kConditionTextStyle = TextStyle(
-  fontSize: 100.0,
+  fontSize: 40.0,
 );
 const kSizeBoxHeight = SizedBox(
   height: 25.0,

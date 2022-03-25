@@ -1,17 +1,19 @@
 import 'package:get/get.dart';
 import 'package:weatherflutter/model/response/weather_response.dart';
 import 'package:weatherflutter/network/weather_service.dart';
+import 'package:weatherflutter/utilities/ConditionIcons.dart';
 
 import '../../model/response/five_days_data.dart';
 
 
 class Controller extends GetxController {
   String? city;
-  String? weatherIcon;
+  String? weatherImage;
+  String? weatherIcons;
   String? weatherMessage;
 
   WeatherResponse weatherResponse = WeatherResponse();
-  var weather = WeatherService(city: 'baghdad');
+  var weather = ConditionIcons();
 
   List<WeatherResponse> dataList = [];
   List<FiveDayData> fiveDaysData = [];
@@ -54,7 +56,8 @@ class Controller extends GetxController {
   void getData(data){
     int? condition = data.weather?[0].id;
     int? temperture = data.main?.temp?.toInt();
-    weatherIcon = weather.getWeatherIcon(condition!);
+    weatherImage = weather.getWeatherImage(condition!);
+    weatherIcons = weather.getWeatherIcon(condition);
     weatherMessage = weather.getMessage(temperture!);
   }
 
