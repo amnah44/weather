@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weatherflutter/weather/presentation/ui/location_screen.dart';
+import 'package:weatherflutter/weather/presentation/ui/location/location_screen.dart';
 import 'package:weatherflutter/weather_binding.dart';
 
 
