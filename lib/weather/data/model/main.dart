@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'main.g.dart';
+
+@JsonSerializable()
 class Main {
     final double? temp;
     final double? feelsLike;
@@ -14,18 +19,8 @@ class Main {
             this.pressure,
             this.humidity});
 
-    factory Main.fromJson(dynamic json) {
-        if (json == null) {
-            return Main();
-        }
+    factory Main.fromJson(Map<String,dynamic> json) =>
+        _$MainFromJson(json);
 
-        return Main(
-            temp: json['temp'],
-            feelsLike: double.parse(json['feels_like'].toString()),
-            tempMin: json['temp_min'],
-            tempMax: json['temp_max'],
-            pressure: json['pressure'],
-            humidity: json['humidity'],
-        );
-    }
+    Map<String, dynamic> toJson() => _$MainToJson(this);
 }

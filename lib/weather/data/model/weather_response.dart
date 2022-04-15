@@ -4,7 +4,11 @@ import 'main.dart';
 import 'sys.dart';
 import 'weather.dart';
 import 'wind.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'weather_response.g.dart';
+
+@JsonSerializable()
 class WeatherResponse {
   final Coord? coord;
   final List<Weather>? weather;
@@ -35,28 +39,9 @@ class WeatherResponse {
         this.name,
         this.cod});
 
-  factory WeatherResponse.fromJson(dynamic json) {
-    if (json == null) {
-      return WeatherResponse();
-    }
+  factory WeatherResponse.fromJson(Map<String,dynamic> json) =>
+      _$WeatherResponseFromJson(json);
 
-    return WeatherResponse(
-      coord: Coord.fromJson(json['coord']),
-      weather: (json['weather'] as List)
-          ?.map((w) => Weather.fromJson(w))
-          ?.toList() ??
-          List.empty(),
-      base: json['base'],
-      main: Main.fromJson(json['main']),
-      visibility: json['visibility'],
-      wind: Wind.fromJson(json['wind']),
-      clouds: Clouds.fromJson(json['clouds']),
-      dt: json['dt'],
-      sys: Sys.fromJson(json['sys']),
-      timezone: json['timezone'],
-      id: json['id'],
-      name: json['name'],
-      cod: json['cod'],
-    );
-  }
+  Map<String, dynamic> toJson() => _$WeatherResponseToJson(this);
+
 }

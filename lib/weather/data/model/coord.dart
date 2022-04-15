@@ -1,14 +1,16 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'coord.g.dart';
+
+@JsonSerializable()
 class Coord {
   final double? lon;
   final double? lat;
 
   Coord({this.lon, this.lat});
 
-  factory Coord.fromJson(dynamic json) {
-    if (json == null) {
-      return Coord();
-    }
+  factory Coord.fromJson(Map<String,dynamic> json) =>
+      _$CoordFromJson(json);
 
-    return Coord(lon: json['lon'], lat: json['lat']);
-  }
+  Map<String, dynamic> toJson() => _$CoordToJson(this);
 }

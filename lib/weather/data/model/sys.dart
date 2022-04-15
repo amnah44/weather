@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'sys.g.dart';
+
+@JsonSerializable()
 class Sys {
   final int? type;
   final int? id;
@@ -7,17 +12,8 @@ class Sys {
 
   Sys({this.type, this.id, this.country, this.sunrise, this.sunset});
 
-  factory Sys.fromJson(dynamic json) {
-    if (json == null) {
-      return Sys();
-    }
+  factory Sys.fromJson(Map<String,dynamic> json) =>
+      _$SysFromJson(json);
 
-    return Sys(
-      type: json['type'],
-      id: json['id'],
-      country: json['country'],
-      sunrise: json['sunrise'],
-      sunset: json['sunset'],
-    );
-  }
+  Map<String, dynamic> toJson() => _$SysToJson(this);
 }

@@ -1,16 +1,16 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'wind.g.dart';
+
+@JsonSerializable()
 class Wind {
     int? deg;
     double? speed;
 
     Wind({this.deg, this.speed});
 
-    factory Wind.fromJson(dynamic json) {
-        if(json == null){
-            return Wind();
-        }
-        return Wind(
-            deg: json['deg'],
-            speed: json['speed'], 
-        );
-    }
+    factory Wind.fromJson(Map<String,dynamic> json) =>
+        _$WindFromJson(json);
+
+    Map<String, dynamic> toJson() => _$WindToJson(this);
 }

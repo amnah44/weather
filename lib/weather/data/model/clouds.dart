@@ -1,15 +1,15 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'clouds.g.dart';
+
+@JsonSerializable()
 class Clouds {
     final int? all;
 
     Clouds({this.all});
 
-    factory Clouds.fromJson(dynamic json) {
-        if (json == null) {
-            return Clouds();
-        }
+    factory Clouds.fromJson(Map<String,dynamic> json) =>
+        _$CloudsFromJson(json);
 
-        return Clouds(
-            all: json['all'],
-        );
-    }
+    Map<String, dynamic> toJson() => _$CloudsToJson(this);
 }
