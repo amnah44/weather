@@ -1,7 +1,4 @@
-
-
 import 'package:get/get.dart';
-
 import '../../app/util/ConditionIcons.dart';
 import '../../data/data_source/network/weather_service.dart';
 import '../../data/model/five_days_data.dart';
