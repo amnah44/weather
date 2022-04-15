@@ -1,9 +1,9 @@
-import 'clouds.dart';
-import 'coord.dart';
-import 'main.dart';
-import 'sys.dart';
-import 'weather.dart';
-import 'wind.dart';
+import '../clouds/clouds.dart';
+import '../coord/coord.dart';
+import '../main/main.dart';
+import '../sys/sys.dart';
+import '../weather/weather.dart';
+import '../wind/wind.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'weather_response.g.dart';

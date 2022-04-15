@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:weatherflutter/weather/data/model/weather_response.dart';
+import 'package:weatherflutter/weather/data/model/weather_response/weather_response.dart';
 import 'package:weatherflutter/weather/presentation/custom_views/horizontal_list.dart';
 import 'package:weatherflutter/weather/presentation/custom_views/weather_card_widget.dart';
 import 'package:weatherflutter/weather/presentation/ui/controller.dart';
