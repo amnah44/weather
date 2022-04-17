@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
-import 'package:weatherflutter/model/response/weather_response.dart';
-import 'package:weatherflutter/network/weather_service.dart';
-import 'package:weatherflutter/utilities/ConditionIcons.dart';
-
-import '../../model/response/five_days_data.dart';
+import '../../app/util/ConditionIcons.dart';
+import '../../data/data_source/network/weather_service.dart';
+import '../../data/model/ten_days_data/five_days_data.dart';
+import '../../data/model/weather_response/weather_response.dart';
 
 class Controller extends GetxController {
   String? city;
@@ -14,7 +13,7 @@ class Controller extends GetxController {
   var weather = ConditionIcons();
 
   List<WeatherResponse> dataList = [];
-  List<FiveDayData> fiveDaysData = [];
+  List<TenDayData> fiveDaysData = [];
 
   Controller({required this.city});
 

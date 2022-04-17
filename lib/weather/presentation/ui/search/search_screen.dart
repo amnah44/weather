@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weatherflutter/utilities/constants.dart';
-import 'controller.dart';
+import 'package:weatherflutter/weather/app/util/constants.dart';
+import '../controller.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);

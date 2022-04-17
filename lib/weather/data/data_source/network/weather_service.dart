@@ -1,8 +1,7 @@
-import 'package:weatherflutter/network//weather_repository.dart';
-import 'package:weatherflutter/network/location.dart';
-
-import '../model/response/five_days_data.dart';
-import '../model/response/weather_response.dart';
+import 'package:weatherflutter/weather/data/data_source/network/weather_location.dart';
+import 'package:weatherflutter/weather/data/repository/weather_repository.dart';
+import 'package:weatherflutter/weather/data/model/ten_days_data/five_days_data.dart';
+import 'package:weatherflutter/weather/data/model/weather_response/weather_response.dart';
 
 class WeatherService {
   final String city;
@@ -15,7 +14,7 @@ class WeatherService {
       {Function()? onLoading,
       Function(WeatherResponse weatherResponse)? onSuccess,
       Function(dynamic error)? onError}) async {
-    Location location = Location();
+    WeatherLocation location = WeatherLocation();
     await location.getCurrentLocation();
 
     var uri = '$baseUrl?lat=${location.latitude}&lon='
@@ -54,7 +53,7 @@ class WeatherService {
 
   void getWeatherOfSpacialCities({
     Function()? onLoading,
-    Function(List<FiveDayData> fiveDayData)? onSuccess,
+    Function(List<TenDayData> fiveDayData)? onSuccess,
     Function(dynamic error)? onError,
   }) {
     final url = 'https://api.openweathermap.org/data/2.5/forecast?q=$city&lang=en&$apiKey';
@@ -63,7 +62,7 @@ class WeatherService {
         onLoading: () => {},
         onSuccess: (data) => {
           onSuccess!((data['list'] as List)
-              ?.map((t) => FiveDayData.fromJson(t))
+              ?.map((t) => TenDayData.fromJson(t))
               ?.toList() ??
               List.empty()),
         },
@@ -72,5 +71,4 @@ class WeatherService {
           onError!(error),
         });
   }
-
 }
